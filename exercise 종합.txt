@@ -1,0 +1,94 @@
+#include <iostream>
+
+using namespace std;
+
+void shift1(int *a, int *b, int *c)
+{
+	*c = *b;
+	*b = *a;
+	*a = 0;
+}
+
+void shift2(int &a, int &b, int &c)
+{
+	c = b;
+	b = a;
+	a = 0;
+}
+
+void circularshift(int &a, int &b, int &c)
+{
+	int temp = a;
+	a = c;
+	c = b;
+	b = temp;
+}
+
+void addTwoVector(const int *a, const int *b, int *c, int N)
+{
+	int i;
+
+	for(i = 0; i < N; i++)
+	{
+		c[i] = a[i] + b[i];
+	}
+}
+
+int main()
+{
+	int a = 1, b = 2, c = 3;
+
+	shift1(&a, &b, &c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	shift1(&a, &b, &c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	cout<<"--------"<<endl;
+
+//--------------------------------------
+
+	a = 1, b = 2, c = 3;
+
+	shift2(a, b, c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	shift2(a, b, c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	cout<<"--------"<<endl;
+
+//--------------------------------------
+
+	a = 1, b = 2, c = 3;
+
+	circularshift(a, b, c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	circularshift(a, b, c);
+	cout<<a<<" "<<b<<" "<<c<<endl;
+
+	cout<<"--------"<<endl;
+
+//--------------------------------------
+
+	int n = 4;
+	int x[] = {1, 2, 3, 4};
+	int y[] = {2, 3, 4, 5};
+
+	int *z;
+	z = new int [n];
+
+	int i;
+
+	addTwoVector(x, y, z, n);
+
+	for(i = 0; i < n; i++)
+	{
+		cout<<z[i]<<" ";
+	}
+
+	delete[]z;
+
+	return 0;
+}
